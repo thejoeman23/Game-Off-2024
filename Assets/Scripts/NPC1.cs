@@ -1,20 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC1 : MonoBehaviour
 {
-        public IEnumerator<string> defaultDialog = Dialog.DefaultNPC();
+        public IEnumerator<string> myDialog = Dialog.NPC1();
 
         // choose what dialog to respond with using data about the games state
         private void handleDialog(GameState gs)
         {
                 if (gs.Dialog[0] != name) return;
 
-                AdvanceDialog(defaultDialog);
+                AdvanceDialog(myDialog);
         }
 
         public void AdvanceDialog(IEnumerator<string> d) {
-                d.MoveNext(); 
+                d.MoveNext();
                 // show d.Current in the text box
                 Debug.Log(d.Current);
         }
