@@ -14,6 +14,21 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) SpeakTo("npc1");
+        // speak to the nearest npc within 10 units from me when space is pressed
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject npc = NearestNPC();
+
+            // if distance is not too large
+            SpeakTo(npc.name);
+        }
+    }
+
+    public GameObject NearestNPC()
+    {
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+        // Aggregate to find the smallest distance
+        GameObject nearest = npcs[0];
+        return nearest;
     }
 }

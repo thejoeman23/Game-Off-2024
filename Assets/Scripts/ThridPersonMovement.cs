@@ -28,8 +28,6 @@ public class ThridPersonMovement : MonoBehaviour
 
         if (direction.magnitude >= .1f)
         {
-            Debug.Log("I");
-
             // the angle that our player needs to be to face the direction we're going ( * mathf.rad2deg just makes it in degrees not radians)
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             // makes the turning smoother
