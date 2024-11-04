@@ -1,34 +1,41 @@
+using System;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] float maxSpeakingDistance = 5f;
+    
     public delegate void Subject(GameState gs);
     public static Subject state;
-    public GameState gs = new("myName");
+    private GameState gs = new("player");
 
-    public void SpeakTo(string name)
+    private void Update()
     {
-        gs.Dialog.Add(name);
-        state?.Invoke(gs);
-    }
-
-    public void Update()
-    {
-        // speak to the nearest npc within 10 units from me when space is pressed
+        // speak to the nearest npc within speaking distance when space is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject npc = NearestNPC();
-
-            // if distance is not too large
-            SpeakTo(npc.name);
+            GameObject npc = NearestWithTag("NPC");
+            if (npc && Vector3.Distance(npc.transform.position, transform.position) < maxSpeakingDistance ) 
+                SpeakTo(npc.name);
         }
     }
 
-    public GameObject NearestNPC()
+    // returns the nearest GameObject with the "NPC" tag
+    private GameObject NearestWithTag(string tagName)
     {
-        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
-        // Aggregate to find the smallest distance
-        GameObject nearest = npcs[0];
-        return nearest;
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag(tagName);
+        float[] distances = npcs.Select(npc =>// distances from player to the npcs 
+            Vector3.Distance(npc.transform.position, transform.position)).ToArray();
+        float nearest = distances.Aggregate((c, d) => c < d ? c : d);// find shortest distance
+        return npcs[Array.IndexOf(distances, nearest)];// get the index of the npc with the smallest distance
     }
+    
+    // add npc name to dialog list and update the game state
+    private void SpeakTo(string nameOfNpc)
+    {
+        gs.Dialog.Add(nameOfNpc);
+        state?.Invoke(gs);
+    }
+
 }

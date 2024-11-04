@@ -15,7 +15,7 @@ public class ThridPersonMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        cam = Camera.main.transform;
+        cam = Camera.main?.transform;
     }
 
     // Update is called once per frame
