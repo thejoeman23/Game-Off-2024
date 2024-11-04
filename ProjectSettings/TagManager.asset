@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - NPC
+  - Rule Tile
+  - Grid
+  - Combined Mesh
+  - Tile Mesh
   layers:
   - Default
   - TransparentFX
