@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class NPC1 : MonoBehaviour
+public class NPC2 : MonoBehaviour
 {
-        private IEnumerator<string> myDialog = Dialog.NPC1();
+        private IEnumerator<string> myDialog = Dialog.NPC2();
 
         // choose what dialog to respond with using data about the games state
         private void handleDialog(GameState gs)
