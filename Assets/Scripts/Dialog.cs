@@ -1,36 +1,34 @@
 using System.Collections.Generic;
-using UnityEngine;
+using TMPro;
+using UnityEngine.UIElements;
 
-// Script that stores all of the dialog
-// instance when needed and advance through text with .MoveNext() and .Current
 public static class Dialog
 {
-    public static void Say(IEnumerator<string> d)
+    public static void Say(IEnumerator<string> dialog, TMP_Text dialogBox)
     {
-        d.MoveNext();
-        // show d.Current in the text box
-        Debug.Log(d.Current);
+        dialogBox.text = Advance(dialog);
     }
-
-    public static IEnumerator<string> DefaultNPC()
+    private static string Advance(IEnumerator<string> dialog)
     {
-        yield return "Hello";
-        yield return "Goodbye";
+        dialog.MoveNext();
+        return dialog.Current;
     }
 
     public static IEnumerator<string> NPC1()
     {
         yield return "Hello, I am NPC 1";
         yield return "How are you?";
-        yield return "Sounds good";
-        yield return "Nevermind";
+        yield return "I am a friendly npc";
+        yield return "Goodbye";
+        // yield return null
     }
 
     public static IEnumerator<string> NPC2()
     {
         yield return "Hello, I am NPC 2";
-        yield return "How are you?";
-        yield return "Sounds good";
-        yield return "Nevermind";
+        yield return "Go away!";
+        yield return "Go away!!";
+        yield return "Go away!!!";
+        // yield return null
     }
 }

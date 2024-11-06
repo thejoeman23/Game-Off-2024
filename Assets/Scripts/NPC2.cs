@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class NPC2 : MonoBehaviour
 {
-        private IEnumerator<string> myDialog = Dialog.NPC2();
+    private IEnumerator<string> myDialog;
 
-        // choose what dialog to respond with using data about the games state
-        private void handleDialog(GameState gs)
-        {
-                if (gs.Dialog.Last() != name) return;
+    private void handleDialog(GameState gs)
+    {
+        if (gs.Dialog.Last() != name) return; // check if I am being spoken to
+        myDialog ??= Dialog.NPC2(); // get new dialog if current dialog is empty
+        Dialog.Say(myDialog, gs.DialogBox);
+    }
 
-                Dialog.Say(myDialog);
-        }
+    public void Awake()
+    {
+        Player.state += handleDialog;
+    }
 
-        public void Awake() { Player.state += handleDialog; }
-        public void OnDestroy() { Player.state -= handleDialog; }
+    public void OnDestroy()
+    {
+        Player.state -= handleDialog;
+    }
 }
