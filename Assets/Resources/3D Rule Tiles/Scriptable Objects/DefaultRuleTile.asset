@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc605feec4586046afce27060d75eb8, type: 3}
   m_Name: DefaultRuleTile
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 9defffb5279ed6b4ca419c0812ed8cb7, type: 2}
+  material: {fileID: 2100000, guid: 5d934624e6d2e0440b4cbd5dce07ba81, type: 2}
   rules:
   - TR: 1
     T: 1
