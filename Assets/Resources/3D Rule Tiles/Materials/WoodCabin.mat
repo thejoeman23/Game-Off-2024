@@ -107,7 +107,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Roatioin: -1.58
+    - _Roatioin: 0
     - _Scale: 55
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
