@@ -8,9 +8,17 @@ public class NPC1 : MonoBehaviour
 
     private void handleDialog(GameState gs)
     {
-        if (gs.Dialog.Last() != name) return; // check if I am being spoken to
+        // end and clear dialog if someone else or nobody is speaking
+        if (gs.Dialog.Last() != name)
+        {
+            myDialog = null;
+            return;
+        }
+
         myDialog ??= Dialog.NPC1(); // get new dialog if current dialog is empty
-        Dialog.Say(myDialog, gs.DialogBox);
+
+        bool dialogIsOver = Dialog.Say(myDialog, gs.DialogBox);
+        if (dialogIsOver) myDialog = null;
     }
 
     public void Awake()

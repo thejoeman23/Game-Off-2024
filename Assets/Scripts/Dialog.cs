@@ -4,31 +4,45 @@ using UnityEngine.UIElements;
 
 public static class Dialog
 {
-    public static void Say(IEnumerator<string> dialog, TMP_Text dialogBox)
+    // advance dialog and put text into dialogBox, return true if dialog is over
+    public static bool Say(IEnumerator<string> script, TMP_Text dialog)
     {
-        dialogBox.text = Advance(dialog);
+        var next = Advance(script);
+
+        // show next line of dialog or end conversation
+        if (next == null)
+        {
+            dialog.text = string.Empty;
+            return true;
+        }
+
+        dialog.text = next;
+        return false;
     }
-    private static string Advance(IEnumerator<string> dialog)
+
+    // return the next line of dialog in the given script
+    private static string Advance(IEnumerator<string> script)
     {
-        dialog.MoveNext();
-        return dialog.Current;
+        script.MoveNext();
+        return script.Current;
     }
 
     public static IEnumerator<string> NPC1()
     {
-        yield return "Hello, I am NPC 1";
-        yield return "How are you?";
-        yield return "I am a friendly npc";
-        yield return "Goodbye";
-        // yield return null
+        yield return "You: Hello NPC1";
+        yield return "NPC1: Hi, I am a friendly npc";
+        yield return "You: Cool";
+        yield return "NPC1: Goodbye";
+        yield return null;
     }
 
     public static IEnumerator<string> NPC2()
     {
-        yield return "Hello, I am NPC 2";
-        yield return "Go away!";
-        yield return "Go away!!";
-        yield return "Go away!!!";
-        // yield return null
+        yield return "You: Hello NPC2";
+        yield return "NPC2: I am NPC 2";
+        yield return "NPC2: Go away!";
+        yield return "NPC2: Go away!!";
+        yield return "NPC2: Go away!!!";
+        yield return null;
     }
 }

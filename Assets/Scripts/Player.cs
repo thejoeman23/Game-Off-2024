@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float maxSpeakingDistance = 5f;
 
+    // allow scripts to access GameState by observing Player.state
     public delegate void Subject(GameState gs);
+
     public static Subject state;
     private GameState gs;
 
@@ -27,12 +29,14 @@ public class Player : MonoBehaviour
             GameObject npc = NearestWithTag("NPC");
             if (npc && Vector3.Distance(npc.transform.position, transform.position) < maxSpeakingDistance)
                 SpeakTo(npc.name);
+            else SpeakTo(null);
         }
     }
 
     private GameObject NearestWithTag(string tagName)
     {
         GameObject[] npcs = GameObject.FindGameObjectsWithTag(tagName);
+        if (npcs.Length == 0) return null;
         float[] distances = npcs.Select(npc => // distances from player to the npcs
             Vector3.Distance(npc.transform.position, transform.position)).ToArray();
         float nearest = distances.Aggregate((c, d) => c < d ? c : d); // find shortest distance
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
     private void SpeakTo(string nameOfNpc)
     {
         gs.Dialog.Add(nameOfNpc);
-        state?.Invoke(gs);
+        if (nameOfNpc == null) gs.DialogBox.text = string.Empty; // clear text if no npc
+       state?.Invoke(gs);
     }
 }
