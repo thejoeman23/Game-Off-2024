@@ -27,19 +27,18 @@ public static class Dialog
         return script.Current;
     }
 
-    public static IEnumerator<string> NPC1()
+    public static IEnumerator<string> NiceDialog()
     {
-        yield return "You: Hello NPC1";
-        yield return "NPC1: Hi, I am a friendly npc";
+        yield return "You: Hello";
+        yield return "NPC1: Hi, I am friendly";
         yield return "You: Cool";
         yield return "NPC1: Goodbye";
         yield return null;
     }
 
-    public static IEnumerator<string> NPC2()
+    public static IEnumerator<string> AngryDialog()
     {
-        yield return "You: Hello NPC2";
-        yield return "NPC2: I am NPC 2";
+        yield return "You: Hello";
         yield return "NPC2: Go away!";
         yield return "NPC2: Go away!!";
         yield return "NPC2: Go away!!!";

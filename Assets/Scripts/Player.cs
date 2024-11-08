@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         gs = new GameState(
-            name,
+            this,
             GameObject.Find("DialogBox").GetComponent<TMP_Text>()
         );
     }
@@ -48,6 +48,6 @@ public class Player : MonoBehaviour
     {
         gs.Dialog.Add(nameOfNpc);
         if (nameOfNpc == null) gs.DialogBox.text = string.Empty; // clear text if no npc
-       state?.Invoke(gs);
+        state?.Invoke(gs);
     }
 }

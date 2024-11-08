@@ -3,9 +3,9 @@ using TMPro;
 
 public struct GameState
 {
-    public GameState(string myName, TMP_Text dialogBox)
+    public GameState(Player player, TMP_Text dialogBox)
     {
-        PlayerName = myName;
+        Player = player;
         DialogBox = dialogBox;
         Dialog = new List<string>();
         Quests = new List<string>();
@@ -13,7 +13,7 @@ public struct GameState
     }
 
     public TMP_Text DialogBox { get; set; }
-    public string PlayerName { get; set; }
+    public Player Player { get; set; }
     public List<string> Dialog { get; set; }
     public List<string> Quests { get; set; }
     public List<string> Objects { get; set; }
