@@ -2,12 +2,13 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using GameObject = UnityEngine.GameObject;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float maxSpeakingDistance = 5f;
 
-    // allow scripts to access GameState by observing Player.state
+    // allow scripts to access GameState changes by observing Player.state
     public delegate void Subject(GameState gs);
 
     public static Subject state;
@@ -23,14 +24,36 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // speak to the nearest npc within speaking distance when space is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject npc = NearestWithTag("NPC");
-            if (npc && Vector3.Distance(npc.transform.position, transform.position) < maxSpeakingDistance)
-                SpeakTo(npc.name);
-            else SpeakTo(null);
+            TakeAction();
+            state?.Invoke(gs); // all actions update gameState
         }
+    }
+
+    // Call the correct method with the correct parameters to execute an action if possible
+    // action priority: pick up package > talk to npc > clear snow
+    private void TakeAction()
+    {
+        // TODO if a (package is close enough then pick it up) -> add to the game state and return
+        // GameObject package = NearestWithTag("package");
+        GameObject package = null;
+        if (package)
+        {
+            PickUp(package);
+        }
+
+        // if (npc character is close enough) -> talk to them and return; else clear dialog and don't return
+        GameObject npc = NearestWithTag("NPC");
+        if (npc && Vector3.Distance(npc.transform.position, transform.position) < maxSpeakingDistance)
+        {
+            SpeakTo(npc.name);
+            return;
+        }
+        SpeakTo(null);
+
+        // TODO if (snow is covering the tile in front of the player) -> clearSnow(snowPosition)
+        ClearSnow(Vector2.zero);
     }
 
     private GameObject NearestWithTag(string tagName)
@@ -48,6 +71,17 @@ public class Player : MonoBehaviour
     {
         gs.Dialog.Add(nameOfNpc);
         if (nameOfNpc == null) gs.DialogBox.text = string.Empty; // clear text if no npc
-        state?.Invoke(gs);
+    }
+
+    private void PickUp(GameObject package)
+    {
+        if (!package) return;
+        gs.Objects.Add(package.ToString());
+    }
+
+    // clearing means replacing the snow tile with either a package, obstacle or nothing
+    private void ClearSnow(Vector2 gridPosition)
+    {
+
     }
 }
