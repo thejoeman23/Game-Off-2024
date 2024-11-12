@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         gs = new GameState(
             this,
-            GameObject.Find("DialogBox").GetComponent<TMP_Text>()
+            GameObject.Find("Text").GetComponent<TMP_Text>()
         );
     }
 
