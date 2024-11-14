@@ -2,11 +2,13 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using GameObject = UnityEngine.GameObject;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float maxSpeakingDistance = 5f;
+    public static int score;
 
     // allow scripts to access GameState changes by observing Player.state
     public delegate void Subject(GameState gs);
@@ -16,9 +18,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        score = 0;
         gs = new GameState(
             this,
             GameObject.Find("Text").GetComponent<TMP_Text>()
+            // GameObject.Find("DialogueBackground")
         );
     }
 
@@ -35,7 +39,7 @@ public class Player : MonoBehaviour
     // action priority: pick up package > talk to npc > clear snow
     private void TakeAction()
     {
-        // TODO if a (package is close enough then pick it up) -> add to the game state and return
+        // if a (package is close enough then pick it up) -> add to the game state and return
         // GameObject package = NearestWithTag("package");
         GameObject package = null;
         if (package)
@@ -50,9 +54,10 @@ public class Player : MonoBehaviour
             SpeakTo(npc.name);
             return;
         }
+
         SpeakTo(null);
 
-        // TODO if (snow is covering the tile in front of the player) -> clearSnow(snowPosition)
+        // if (snow is covering the tile in front of the player) -> clearSnow(snowPosition)
         ClearSnow(Vector2.zero);
     }
 
@@ -60,9 +65,9 @@ public class Player : MonoBehaviour
     {
         GameObject[] npcs = GameObject.FindGameObjectsWithTag(tagName);
         if (npcs.Length == 0) return null;
-        float[] distances = npcs.Select(npc => // distances from player to the npcs
+        var distances = npcs.Select(npc => // distances from player to the npcs
             Vector3.Distance(npc.transform.position, transform.position)).ToArray();
-        float nearest = distances.Aggregate((c, d) => c < d ? c : d); // find shortest distance
+        var nearest = distances.Aggregate((c, d) => c < d ? c : d); // find shortest distance
         return npcs[Array.IndexOf(distances, nearest)]; // get the index of the npc with the smallest distance
     }
 
@@ -76,12 +81,11 @@ public class Player : MonoBehaviour
     private void PickUp(GameObject package)
     {
         if (!package) return;
-        gs.Objects.Add(package.ToString());
+        gs.Inventory.Add("PackageA");
     }
 
     // clearing means replacing the snow tile with either a package, obstacle or nothing
     private void ClearSnow(Vector2 gridPosition)
     {
-
     }
 }
