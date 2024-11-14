@@ -8,13 +8,15 @@ public struct GameState
         Player = player;
         DialogBox = dialogBox;
         Dialog = new List<string>();
-        Quests = new List<string>();
-        Objects = new List<string>();
+        Inventory = new List<string>();
     }
 
     public TMP_Text DialogBox { get; set; }
     public Player Player { get; set; }
+
+    // a record of the dialog being said
     public List<string> Dialog { get; set; }
-    public List<string> Quests { get; set; }
-    public List<string> Objects { get; set; }
+
+    // packages that the player has picked up
+    public List<string> Inventory { get; set; }
 }
