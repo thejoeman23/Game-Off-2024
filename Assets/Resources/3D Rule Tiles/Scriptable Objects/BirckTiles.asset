@@ -1,0 +1,346 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc605feec4586046afce27060d75eb8, type: 3}
+  m_Name: BirckTiles
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 6ec742a3a8e9c82429bf233493a0d357, type: 2}
+  rules:
+  - TR: 1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: 1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 7433417004994235864, guid: 9b238dc5fd5fd35428347234ddba3f9a, type: 3}
+  - TR: 0
+    T: -1
+    TL: -1
+    R: 1
+    L: -1
+    BR: 1
+    B: 1
+    BL: 0
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6875101139779799358, guid: bfab7313351c1a544a386c60e507206d, type: 3}
+  - TR: -1
+    T: -1
+    TL: 0
+    R: -1
+    L: 1
+    BR: 0
+    B: 1
+    BL: 1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6875101139779799358, guid: bfab7313351c1a544a386c60e507206d, type: 3}
+  - TR: 0
+    T: 1
+    TL: 1
+    R: -1
+    L: 1
+    BR: -1
+    B: -1
+    BL: 0
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6875101139779799358, guid: bfab7313351c1a544a386c60e507206d, type: 3}
+  - TR: 1
+    T: 1
+    TL: 0
+    R: 1
+    L: -1
+    BR: 0
+    B: -1
+    BL: -1
+    rotation: -90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6875101139779799358, guid: bfab7313351c1a544a386c60e507206d, type: 3}
+  - TR: 1
+    T: 1
+    TL: 0
+    R: 1
+    L: -1
+    BR: 1
+    B: 1
+    BL: 0
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6809618719149079167, guid: 2b8f069918948154cb9d416844b0e6b6, type: 3}
+  - TR: 0
+    T: 1
+    TL: 1
+    R: -1
+    L: 1
+    BR: 0
+    B: 1
+    BL: 1
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6809618719149079167, guid: 2b8f069918948154cb9d416844b0e6b6, type: 3}
+  - TR: 0
+    T: -1
+    TL: 0
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: 1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6809618719149079167, guid: 2b8f069918948154cb9d416844b0e6b6, type: 3}
+  - TR: 1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: 0
+    B: -1
+    BL: 0
+    rotation: 270
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6809618719149079167, guid: 2b8f069918948154cb9d416844b0e6b6, type: 3}
+  - TR: 0
+    T: 1
+    TL: 0
+    R: -1
+    L: -1
+    BR: -1
+    B: -1
+    BL: -1
+    rotation: -90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 7338505171014363875, guid: d5fb8e4549c62cb459e874d2b3020610, type: 3}
+  - TR: -1
+    T: -1
+    TL: 0
+    R: -1
+    L: 1
+    BR: -1
+    B: -1
+    BL: 0
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 7338505171014363875, guid: d5fb8e4549c62cb459e874d2b3020610, type: 3}
+  - TR: 0
+    T: -1
+    TL: -1
+    R: 1
+    L: -1
+    BR: 0
+    B: -1
+    BL: -1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 7338505171014363875, guid: d5fb8e4549c62cb459e874d2b3020610, type: 3}
+  - TR: -1
+    T: -1
+    TL: -1
+    R: -1
+    L: -1
+    BR: 0
+    B: 1
+    BL: 0
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 7338505171014363875, guid: d5fb8e4549c62cb459e874d2b3020610, type: 3}
+  - TR: -1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: -1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 6955615499493731226, guid: fc654f569c4a2c94abcf52afa236cd23, type: 3}
+  - TR: 1
+    T: 0
+    TL: 11
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: -1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 5113664286640108101, guid: f8319363b899c4547a4324ad85226a01, type: 3}
+  - TR: 1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: 1
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 5113664286640108101, guid: f8319363b899c4547a4324ad85226a01, type: 3}
+  - TR: -1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: 1
+    rotation: -90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 5113664286640108101, guid: f8319363b899c4547a4324ad85226a01, type: 3}
+  - TR: 1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: 1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 5113664286640108101, guid: f8319363b899c4547a4324ad85226a01, type: 3}
+  - TR: 1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: -1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 1958259532220558120, guid: 3e25be5fe6838924f88f3af3ee547ada, type: 3}
+  - TR: 1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: -1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 1958259532220558120, guid: 3e25be5fe6838924f88f3af3ee547ada, type: 3}
+  - TR: -1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: 1
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 1958259532220558120, guid: 3e25be5fe6838924f88f3af3ee547ada, type: 3}
+  - TR: -1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: 1
+    rotation: -90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 1958259532220558120, guid: 3e25be5fe6838924f88f3af3ee547ada, type: 3}
+  - TR: 1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: -1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 8744852613694725930, guid: e96d1778ac615ff458b3c5b98dbf4599, type: 3}
+  - TR: -1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: -1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 8744852613694725930, guid: e96d1778ac615ff458b3c5b98dbf4599, type: 3}
+  - TR: -1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: 1
+    rotation: 180
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 8744852613694725930, guid: e96d1778ac615ff458b3c5b98dbf4599, type: 3}
+  - TR: -1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: -1
+    rotation: -90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 8744852613694725930, guid: e96d1778ac615ff458b3c5b98dbf4599, type: 3}
+  - TR: -1
+    T: 1
+    TL: 1
+    R: 1
+    L: 1
+    BR: 1
+    B: 1
+    BL: -1
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 4108568850573333652, guid: 1a6801bad319ca3489829f13f36da123, type: 3}
+  - TR: 1
+    T: 1
+    TL: -1
+    R: 1
+    L: 1
+    BR: -1
+    B: 1
+    BL: 1
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 4108568850573333652, guid: 1a6801bad319ca3489829f13f36da123, type: 3}
+  - TR: 0
+    T: -1
+    TL: 0
+    R: 1
+    L: 1
+    BR: 0
+    B: -1
+    BL: 0
+    rotation: 0
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 9152569937244381956, guid: 34476238ff051d642b8f54a4e7231e03, type: 3}
+  - TR: 0
+    T: 1
+    TL: 0
+    R: -1
+    L: -1
+    BR: 0
+    B: 1
+    BL: 0
+    rotation: 90
+    position_offset: {x: 0, y: 0, z: 0}
+    tile: {fileID: 9152569937244381956, guid: 34476238ff051d642b8f54a4e7231e03, type: 3}
