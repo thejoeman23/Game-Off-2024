@@ -13,12 +13,13 @@ public struct GameState
         Inventory = new List<string>();
 
         Textbox.SetActive(false);
+        Dialog.Add(null);
     }
 
-    public void TextboxActive(bool targetState)
+    public void TextboxActive(bool target)
     {
-        if (targetState != Textbox.activeSelf)
-            Textbox.SetActive(targetState);
+        if (target != Textbox.activeSelf)
+            Textbox.SetActive(target);
     }
 
     private GameObject Textbox { get; set; }

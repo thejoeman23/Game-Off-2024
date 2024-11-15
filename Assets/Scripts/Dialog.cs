@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 
 public static class Dialog
 {
@@ -61,7 +60,7 @@ public static class Dialog
             {
                 yield return "Is this your package?";
                 yield return "It is! Thank you so much! My night is saved!";
-                Player.score++;
+                Player.completedDeliveriesCount++;
                 yield return null;
             }
         }
@@ -81,7 +80,8 @@ public static class Dialog
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.score++;
+                Player.completedDeliveriesCount++;
+                // deliveredPackages.Add("PackageA"), to prevent multiple deliveries of the same package
                 yield return null;
             }
         }

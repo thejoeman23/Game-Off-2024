@@ -2,12 +2,11 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using GameObject = UnityEngine.GameObject;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float maxSpeakingDistance = 5f;
-    public static int score;
+    [SerializeField] private float actionDistance = 5f;
+    public static int completedDeliveriesCount; // value to be displayed on the ui to show progress
 
     public delegate void Subject(GameState gs);
 
@@ -16,7 +15,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        score = 0;
+        completedDeliveriesCount = 0;
         var db = GameObject.Find("DialogueBackground");
         _gs = new GameState(
             this,
@@ -38,24 +37,22 @@ public class Player : MonoBehaviour
     // action priority: pick up package > talk to npc > clear snow
     private void TakeAction()
     {
-        // if a (package is close enough then pick it up) -> add to the game state and return
-        // GameObject package = NearestWithTag("package");
-        GameObject package = null;
-        if (package)
+        GameObject package = NearestWithTag("Package");
+        if (package && Vector3.Distance(package.transform.position, transform.position) < actionDistance)
         {
-            PickUp(package);
+            PickUp(package.name);
+            package.SetActive(false); // hide the package when it is picked up
+            return;
         }
 
-        // if (npc character is close enough) -> talk to them and return; else clear dialog and don't return
         GameObject npc = NearestWithTag("NPC");
-        if (npc && Vector3.Distance(npc.transform.position, transform.position) < maxSpeakingDistance)
+        if (npc && Vector3.Distance(npc.transform.position, transform.position) < actionDistance)
         {
             SpeakTo(npc.name);
             return;
         }
-        SpeakTo(null);
 
-        // if (snow is covering the tile in front of the player) -> clearSnow(snowPosition)
+        // if ( snow in front of me )
         ClearSnow(Vector2.zero);
     }
 
@@ -63,27 +60,34 @@ public class Player : MonoBehaviour
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(tagName);
         if (objs.Length == 0) return null;
-        var distances = objs.Select(obj => // distances from player to the npcs
+        var distances = objs.Select(obj => // calculate distances from the player to the objects
             Vector3.Distance(obj.transform.position, transform.position)).ToArray();
-        var nearest = distances.Aggregate((c, d) => c < d ? c : d); // find shortest distance
-        return objs[Array.IndexOf(distances, nearest)]; // get the index of the npc with the smallest distance
+        var nearest = distances.Aggregate((c, d) => c < d ? c : d); // find the index of the shortest distance
+        return objs[Array.IndexOf(distances, nearest)];
     }
 
-    // add npc name to dialog list and update the game state
+    // add npc name or null to the dialog list
     private void SpeakTo(string nameOfNpc)
     {
         _gs.Dialog.Add(nameOfNpc);
         if (nameOfNpc == null) _gs.Text.text = string.Empty; // clear text if no npc
+        else Debug.Log($"Speaking to {nameOfNpc}");
     }
 
-    private void PickUp(GameObject package)
+    private void DoNotSpeak()
     {
-        if (!package) return;
-        _gs.Inventory.Add("PackageA");
+        SpeakTo(null);
+    }
+    private void PickUp(string packageName)
+    {
+        DoNotSpeak();
+        _gs.Inventory.Add(packageName);
+        Debug.Log($"Added {packageName} to inventory");
     }
 
     // clearing means replacing the snow tile with either a package, obstacle or nothing
-    private void ClearSnow(Vector2 gridPosition)
+    private void ClearSnow(Vector2 snowPosition)
     {
+        DoNotSpeak();
     }
 }
