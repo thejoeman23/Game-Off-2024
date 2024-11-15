@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     private void HandleDialog(GameState gs)
     {
         // end and clear dialog if someone else or nobody is speaking
+        if (gs.Dialog.Last() == null) gs.TextboxActive(false);
         if (gs.Dialog.Last() != name)
         {
             _myDialog = null;
@@ -17,27 +18,33 @@ public class Character : MonoBehaviour
         }
 
         _gs = gs;
-        GetPlayersAttention();
-        _myDialog ??= Dialog.Get(name, _gs); // get new dialog if MyDialog is null
+        _myDialog ??= Dialog.Get(name, gs); // get new dialog if MyDialog is null
+        var dialogIsOver = Dialog.Say(_myDialog, gs.Text);
 
-        var dialogIsOver = Dialog.Say(_myDialog, _gs.DialogBox);
-        if (dialogIsOver) _myDialog = null;
+        GetAttention(gs.Player);
+        gs.TextboxActive(true);
+
+        if (dialogIsOver)
+        {
+            gs.TextboxActive(false);
+            _myDialog = null;
+        }
     }
 
     // make the player look at you, the player does not look up or down
-    private void GetPlayersAttention()
+    private void GetAttention(Player player)
     {
         Vector3 myPosition = transform.position;
-        myPosition.y = _gs.Player.transform.position.y;
-        _gs.Player.transform.LookAt(myPosition);
+        myPosition.y = player.transform.position.y;
+        player.transform.LookAt(myPosition);
     }
 
-    protected virtual void Awake()
+    protected void Awake()
     {
         Player.state += HandleDialog;
     }
 
-    protected virtual void OnDestroy()
+    protected void OnDestroy()
     {
         Player.state -= HandleDialog;
     }

@@ -1,17 +1,28 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 public struct GameState
 {
-    public GameState(Player player, TMP_Text dialogBox)
+    public GameState(Player player, GameObject textbox, TMP_Text text)
     {
         Player = player;
-        DialogBox = dialogBox;
+        Text = text;
+        Textbox = textbox;
         Dialog = new List<string>();
         Inventory = new List<string>();
+
+        Textbox.SetActive(false);
     }
 
-    public TMP_Text DialogBox { get; set; }
+    public void TextboxActive(bool targetState)
+    {
+        if (targetState != Textbox.activeSelf)
+            Textbox.SetActive(targetState);
+    }
+
+    private GameObject Textbox { get; set; }
+    public TMP_Text Text { get; set; }
     public Player Player { get; set; }
 
     // a record of the dialog being said

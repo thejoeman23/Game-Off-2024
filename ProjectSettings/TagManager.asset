@@ -9,6 +9,7 @@ TagManager:
   - Rule Tile
   - Grid
   - NPC
+  - Package
   layers:
   - Default
   - TransparentFX

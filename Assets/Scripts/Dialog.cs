@@ -5,25 +5,23 @@ using UnityEngine;
 
 public static class Dialog
 {
-    private static Array _inventory;
+    private static Array _inventory = Array.Empty<string>();
 
     // advance dialog and put text into dialogBox, return true if dialog is over
-    // ReSharper disable Unity.PerformanceAnalysis
-    public static bool Say(IEnumerator<string> script, TMP_Text dialog)
+    public static bool Say(IEnumerator<string> script, TMP_Text text)
     {
+        if (script == null) throw new ArgumentNullException(nameof(script));
+
         var next = Advance(script);
 
         // show next line of dialog or end conversation
         if (next == null)
         {
-            dialog.text = string.Empty;
-            // gs.background.SetActive(true);
+            text.text = string.Empty;
             return true;
         }
 
-
-        // gs.background.SetActive(false);
-        dialog.text = next;
+        text.text = next;
         return false;
     }
 
@@ -44,7 +42,7 @@ public static class Dialog
 
     private static bool InventoryContains(string packageName)
     {
-        return Array.IndexOf(_inventory, "PackageA") != -1;
+        return Array.IndexOf(_inventory, packageName) != -1;
     }
 
 
