@@ -46,7 +46,9 @@ public class Player : MonoBehaviour
         }
 
         GameObject npc = NearestWithTag("NPC");
-        if (npc && Vector3.Distance(npc.transform.position, transform.position) < actionDistance)
+        var children = npc.GetComponentsInChildren<Transform>();
+        var doorPos = children.First(x => x.gameObject.name == "Door").position;
+        if (npc && Vector3.Distance(doorPos, transform.position) < actionDistance)
         {
             SpeakTo(npc.name);
             return;
@@ -89,5 +91,11 @@ public class Player : MonoBehaviour
     private void ClearSnow(Vector2 snowPosition)
     {
         DoNotSpeak();
+
+        // look for a snow block in front of the player
+        // check if it's coordinates are on the package or obstacle list
+        // remove or replace the snow block
+
+        Debug.Log("Clearing snow");
     }
 }
