@@ -27,10 +27,9 @@ public class ThridPersonMovement : MonoBehaviour
         {
             var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-
-            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
             Vector3 moveDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-            controller.SimpleMove(moveDirection.normalized * speed);
+            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+            controller.SimpleMove(moveDirection.normalized * (speed * Time.deltaTime));
         }
     }
 }
