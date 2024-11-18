@@ -10,9 +10,7 @@ public struct GameState
         Text = text;
         Textbox = textbox;
         Dialog = new List<string>();
-        Inventory = new List<string>();
-        Packages = GameObject.FindGameObjectsWithTag("Package");
-
+        Inventory = new System.Collections.Generic.HashSet<string>();
         Textbox.SetActive(false);
         Dialog.Add(null);
     }
@@ -26,13 +24,6 @@ public struct GameState
     private GameObject Textbox { get; set; }
     public TMP_Text Text { get; set; }
     public Player Player { get; set; }
-
-    // a record of the dialog being said
     public List<string> Dialog { get; set; }
-
-    // packages that the player has picked up
-    public List<string> Inventory { get; set; }
-
-    // packages that are still hidden
-    public GameObject[] Packages { get; set; }
+    public HashSet<string> Inventory { get; set; }
 }

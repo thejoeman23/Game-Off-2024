@@ -17,18 +17,14 @@ public class Character : MonoBehaviour
             return;
         }
 
-        _gs = gs;
+        GetAttention(gs.Player);
         _myDialog ??= Dialog.Get(name, gs); // get new dialog if MyDialog is null
         var dialogIsOver = Dialog.Say(_myDialog, gs.Text);
-
-        GetAttention(gs.Player);
-        gs.SetTextboxActive(true);
-
         if (dialogIsOver)
         {
             gs.SetTextboxActive(false);
             _myDialog = null;
-        }
+        } else gs.SetTextboxActive(true);
     }
 
     // make the player look at you, the player does not look up or down

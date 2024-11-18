@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float actionDistance = 5f;
     [SerializeField] private int snowClearDistance = 3;
-    public static int completedDeliveriesCount; // value to be displayed on the ui to show progress
+
+    public static HashSet<string> deliveredPackages;
+    private static TMP_Text _progressText;
 
     public delegate void Subject(GameState gs);
 
@@ -16,7 +19,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        completedDeliveriesCount = 0;
+        deliveredPackages = new HashSet<string>();
+        _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
+
         var db = GameObject.Find("DialogueBackground");
         _gs = new GameState(
             this,
@@ -30,12 +35,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
-            state?.Invoke(_gs); // all actions update gameState
+            state?.Invoke(_gs); // all actions send game state to the characters
+            _progressText.text = $"{deliveredPackages.Count()}/10";
         }
     }
 
     // Call the correct method with the correct parameters to execute an action if possible
-    // action priority: pick up package > talk to npc > clear snow
     private void TakeAction()
     {
         GameObject package = NearestWithTag("Package");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 
 public static class Dialog
@@ -60,7 +61,7 @@ public static class Dialog
             {
                 yield return "Is this your package?";
                 yield return "It is! Thank you so much! My night is saved!";
-                Player.completedDeliveriesCount++;
+                Player.deliveredPackages.Add("PackageA");
                 yield return null;
             }
         }
@@ -80,8 +81,7 @@ public static class Dialog
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.completedDeliveriesCount++;
-                // deliveredPackages.Add("PackageA"), to prevent multiple deliveries of the same package
+                Player.deliveredPackages.Add("PackageB");
                 yield return null;
             }
         }
