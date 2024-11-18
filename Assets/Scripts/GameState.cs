@@ -11,12 +11,13 @@ public struct GameState
         Textbox = textbox;
         Dialog = new List<string>();
         Inventory = new List<string>();
+        Packages = GameObject.FindGameObjectsWithTag("Package");
 
         Textbox.SetActive(false);
         Dialog.Add(null);
     }
 
-    public void TextboxActive(bool target)
+    public void SetTextboxActive(bool target)
     {
         if (target != Textbox.activeSelf)
             Textbox.SetActive(target);
@@ -31,4 +32,7 @@ public struct GameState
 
     // packages that the player has picked up
     public List<string> Inventory { get; set; }
+
+    // packages that are still hidden
+    public GameObject[] Packages { get; set; }
 }

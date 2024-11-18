@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float actionDistance = 5f;
+    [SerializeField] private int snowClearDistance = 3;
     public static int completedDeliveriesCount; // value to be displayed on the ui to show progress
 
     public delegate void Subject(GameState gs);
@@ -54,8 +55,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // if ( snow in front of me )
-        ClearSnow(Vector2.zero);
+        TryClearSnow();
     }
 
     private GameObject NearestWithTag(string tagName)
@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
     {
         SpeakTo(null);
     }
+
     private void PickUp(string packageName)
     {
         DoNotSpeak();
@@ -88,14 +89,23 @@ public class Player : MonoBehaviour
     }
 
     // clearing means replacing the snow tile with either a package, obstacle or nothing
-    private void ClearSnow(Vector2 snowPosition)
+    private void TryClearSnow()
     {
         DoNotSpeak();
 
-        // look for a snow block in front of the player
-        // check if it's coordinates are on the package or obstacle list
-        // remove or replace the snow block
+        // look for a game object in front of the player
+        var hit = Physics.Raycast(
+            transform.position,
+            transform.TransformDirection(Vector3.forward),
+            out var info,
+            snowClearDistance
+        );
+        if (!hit) return;
 
-        Debug.Log("Clearing snow");
+        var obj = info.collider.gameObject;
+        // checking the tag doesnt work because the tag gets replaced with the "Rule Tile" tag
+        if (obj.name != "snow") return;
+        Debug.Log($"Clearing snow at {obj.transform.position}");
+        Destroy(obj);
     }
 }

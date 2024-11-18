@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     private void HandleDialog(GameState gs)
     {
         // end and clear dialog if someone else or nobody is speaking
-        if (gs.Dialog.Last() == null) gs.TextboxActive(false);
+        if (gs.Dialog.Last() == null) gs.SetTextboxActive(false);
         if (gs.Dialog.Last() != name)
         {
             _myDialog = null;
@@ -22,11 +22,11 @@ public class Character : MonoBehaviour
         var dialogIsOver = Dialog.Say(_myDialog, gs.Text);
 
         GetAttention(gs.Player);
-        gs.TextboxActive(true);
+        gs.SetTextboxActive(true);
 
         if (dialogIsOver)
         {
-            gs.TextboxActive(false);
+            gs.SetTextboxActive(false);
             _myDialog = null;
         }
     }
