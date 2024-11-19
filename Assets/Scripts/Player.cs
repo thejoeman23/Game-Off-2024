@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -6,7 +7,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float actionDistance = 5f;
-    public static int completedDeliveriesCount; // value to be displayed on the ui to show progress
+    [SerializeField] private int snowClearDistance = 3;
+
+    public static HashSet<string> deliveredPackages;
+    private static TMP_Text _progressText;
 
     public delegate void Subject(GameState gs);
 
@@ -15,7 +19,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        completedDeliveriesCount = 0;
+        deliveredPackages = new HashSet<string>();
+        _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
+
         var db = GameObject.Find("DialogueBackground");
         _gs = new GameState(
             this,
@@ -29,12 +35,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
-            state?.Invoke(_gs); // all actions update gameState
+            state?.Invoke(_gs); // all actions send game state to the characters
+            _progressText.text = $"{deliveredPackages.Count()}/10";
         }
     }
 
     // Call the correct method with the correct parameters to execute an action if possible
-    // action priority: pick up package > talk to npc > clear snow
     private void TakeAction()
     {
         GameObject package = NearestWithTag("Package");
@@ -54,8 +60,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // if ( snow in front of me )
-        ClearSnow(Vector2.zero);
+        TryClearSnow();
     }
 
     private GameObject NearestWithTag(string tagName)
@@ -80,6 +85,7 @@ public class Player : MonoBehaviour
     {
         SpeakTo(null);
     }
+
     private void PickUp(string packageName)
     {
         DoNotSpeak();
@@ -88,14 +94,23 @@ public class Player : MonoBehaviour
     }
 
     // clearing means replacing the snow tile with either a package, obstacle or nothing
-    private void ClearSnow(Vector2 snowPosition)
+    private void TryClearSnow()
     {
         DoNotSpeak();
 
-        // look for a snow block in front of the player
-        // check if it's coordinates are on the package or obstacle list
-        // remove or replace the snow block
+        // look for a game object in front of the player
+        var hit = Physics.Raycast(
+            transform.position,
+            transform.TransformDirection(Vector3.forward),
+            out var info,
+            snowClearDistance
+        );
+        if (!hit) return;
 
-        Debug.Log("Clearing snow");
+        var obj = info.collider.gameObject;
+        // checking the tag doesnt work because the tag gets replaced with the "Rule Tile" tag
+        if (obj.name != "snow") return;
+        Debug.Log($"Clearing snow at {obj.transform.position}");
+        Destroy(obj);
     }
 }

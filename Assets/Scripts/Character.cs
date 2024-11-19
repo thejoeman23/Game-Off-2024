@@ -10,25 +10,21 @@ public class Character : MonoBehaviour
     private void HandleDialog(GameState gs)
     {
         // end and clear dialog if someone else or nobody is speaking
-        if (gs.Dialog.Last() == null) gs.TextboxActive(false);
+        if (gs.Dialog.Last() == null) gs.SetTextboxActive(false);
         if (gs.Dialog.Last() != name)
         {
             _myDialog = null;
             return;
         }
 
-        _gs = gs;
+        GetAttention(gs.Player);
         _myDialog ??= Dialog.Get(name, gs); // get new dialog if MyDialog is null
         var dialogIsOver = Dialog.Say(_myDialog, gs.Text);
-
-        GetAttention(gs.Player);
-        gs.TextboxActive(true);
-
         if (dialogIsOver)
         {
-            gs.TextboxActive(false);
+            gs.SetTextboxActive(false);
             _myDialog = null;
-        }
+        } else gs.SetTextboxActive(true);
     }
 
     // make the player look at you, the player does not look up or down
