@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float actionDistance = 5f;
     [SerializeField] private int snowClearDistance = 3;
 
-    public static HashSet<string> deliveredPackages;
+    public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
     private static TMP_Text _progressText;
+    private static Transform _hoveringTransform;
 
     public delegate void Subject(GameState gs);
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     {
         deliveredPackages = new HashSet<string>();
         _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
+        _hoveringTransform = GameObject.Find("HoveringBody").transform;
 
         var db = GameObject.Find("DialogueBackground");
         _gs = new GameState(
@@ -32,6 +34,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        var pos = _hoveringTransform.position;
+        pos.y += Mathf.Sin(Time.timeSinceLevelLoad) * 0.01f;
+        _hoveringTransform.position = pos;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
@@ -46,6 +52,7 @@ public class Player : MonoBehaviour
         GameObject package = NearestWithTag("Package");
         if (package && Vector3.Distance(package.transform.position, transform.position) < actionDistance)
         {
+            // if (not inside DeepSnow)
             PickUp(package.name);
             package.SetActive(false); // hide the package when it is picked up
             return;
@@ -99,17 +106,20 @@ public class Player : MonoBehaviour
         DoNotSpeak();
 
         // look for a game object in front of the player
+        var origin = transform.position;
+        origin.y -= 0.5f;
         var hit = Physics.Raycast(
-            transform.position,
+            origin,
             transform.TransformDirection(Vector3.forward),
             out var info,
             snowClearDistance
         );
         if (!hit) return;
-
         var obj = info.collider.gameObject;
+
         // checking the tag doesnt work because the tag gets replaced with the "Rule Tile" tag
-        if (obj.name != "snow") return;
+        if (!obj.name.Contains("DeepSnow")) return;
+
         Debug.Log($"Clearing snow at {obj.transform.position}");
         Destroy(obj);
     }
