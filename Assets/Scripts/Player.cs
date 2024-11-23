@@ -34,16 +34,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        var pos = _hoveringTransform.position;
-        pos.y += Mathf.Sin(Time.timeSinceLevelLoad) * 0.01f;
-        _hoveringTransform.position = pos;
-
+        hoverEffect();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
             state?.Invoke(_gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
         }
+    }
+
+    private void hoverEffect()
+    {
+        var pos = _hoveringTransform.position;
+        pos.y += Mathf.Sin(Time.timeSinceLevelLoad) * 0.0025f;
+        _hoveringTransform.position = pos;
     }
 
     // Call the correct method with the correct parameters to execute an action if possible

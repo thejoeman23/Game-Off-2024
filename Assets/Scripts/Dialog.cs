@@ -90,4 +90,84 @@ public static class Dialog
         yield return "It will expire soon! Go!";
         yield return null;
     }
+
+    public static IEnumerator<string> HouseC()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("PackageC"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("PackageC");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> HouseD()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("PackageD"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("PackageD");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> HouseE()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("PackageE"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("PackageE");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> HouseF()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("PackageF"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("PackageF");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
 }
