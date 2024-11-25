@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float actionDistance = 5f;
     [SerializeField] private int snowClearDistance = 3;
+    public static float ActionDistance = 3f;
 
     public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
     private static TMP_Text _progressText;
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     private void TakeAction()
     {
         GameObject package = NearestWithTag("Package");
-        if (package && Vector3.Distance(package.transform.position, transform.position) < actionDistance)
+        if (package && Vector3.Distance(package.transform.position, transform.position) < ActionDistance)
         {
             // if (not inside DeepSnow)
             PickUp(package.name);
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         GameObject npc = NearestWithTag("NPC");
         var children = npc.GetComponentsInChildren<Transform>();
         var doorPos = children.First(x => x.gameObject.name == "Door").position;
-        if (npc && Vector3.Distance(doorPos, transform.position) < actionDistance)
+        if (npc && Vector3.Distance(doorPos, transform.position) < ActionDistance)
         {
             SpeakTo(npc.name);
             return;
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         TryClearSnow();
     }
 
-    private GameObject NearestWithTag(string tagName)
+    public GameObject NearestWithTag(string tagName)
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag(tagName);
         if (objs.Length == 0) return null;
