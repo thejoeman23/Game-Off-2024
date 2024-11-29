@@ -69,8 +69,8 @@ Material:
     - _Refraction_Strength: 0.1
     - _Smoothness: 1
     - _Speed: 0.05
-    - _WaveScale: 0.5
-    - _WaveStrength: 0.2
+    - _WaveScale: 0.05
+    - _WaveStrength: 0.05
     - _Wave_Direction: 135
     m_Colors:
     - _Color: {r: 0.2588235, g: 0.6127475, b: 0.77254903, a: 1}
