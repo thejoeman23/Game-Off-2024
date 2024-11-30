@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int snowClearDistance = 3;
+    [SerializeField] private GameObject snowClearEffect;
     public static float ActionDistance = 3f;
 
     public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
@@ -125,6 +126,8 @@ public class Player : MonoBehaviour
         if (!obj.name.Contains("DeepSnow")) return;
 
         Debug.Log($"Clearing snow at {obj.transform.position}");
+        //GameObject ParticleSystem = Instantiate(snowClearEffect);
+        //ParticleSystem.transform.position = obj.transform.position;
         Destroy(obj);
     }
 }
