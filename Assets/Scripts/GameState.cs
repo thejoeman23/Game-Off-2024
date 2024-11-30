@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,7 +20,24 @@ public struct GameState
     public void SetTextboxActive(bool target)
     {
         if (target != Textbox.activeSelf)
-            Textbox.SetActive(target);
+            if (target == true)
+            {
+                Textbox.transform.localScale = Vector3.zero;
+                Textbox.SetActive(target);
+                Textbox.transform.DOScale(new Vector3(.45f,.45f,.45f), .1f).Play();
+            } else
+            {
+                GameObject textbox = Textbox;
+
+                Tween shrink = Textbox.transform.DOScale(Vector3.zero, .1f);
+                shrink.Play();
+                shrink.OnComplete(() => { textbox.SetActive(target); });
+            }
+    }
+
+    void setActive(bool target)
+    {
+        Textbox.SetActive(target);
     }
 
     private GameObject Textbox { get; set; }

@@ -21,7 +21,7 @@ public static class Dialog
             return true;
         }
 
-        text.text = next;
+        text.text = "<+spread>" + next;
         return false;
     }
 
