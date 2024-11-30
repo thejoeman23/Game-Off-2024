@@ -34,7 +34,7 @@ public class InteractBubble : MonoBehaviour
     {
         foreach (Vector3 v in interactables)
         {
-            if (Vector3.Distance(_player.transform.position, v) <= Player.actionDistance)
+            if (Vector3.Distance(_player.transform.position, v) <= Player.ActionDistance)
             {
                 _interactBubble.SetActive(true);
                 return;
