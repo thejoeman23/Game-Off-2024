@@ -1,5 +1,0 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-Assets/Scenes/npcTest.unity filter=lfs diff=lfs merge=lfs -text
-Assets/Scenes/SampleScene.unity filter=lfs diff=lfs merge=lfs -text
-Assets/Scenes/Town.unity filter=lfs diff=lfs merge=lfs -text
