@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int snowClearDistance = 3;
     [SerializeField] private GameObject snowClearEffect;
+    [SerializeField] private GameObject whiteBackground;
+    [SerializeField] private GameObject endGameScreen;
+    [SerializeField] private float transitionTime;
     public static float ActionDistance = 3f;
 
     public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
@@ -51,6 +55,12 @@ public class Player : MonoBehaviour
             _progressText.text = $"{deliveredPackages.Count()}/10";
         }
         if (transform.position.y < 0) transform.position = _startPos;
+
+        if (deliveredPackages.Count() == 1)
+        {
+            whiteBackground.GetComponent<Transform>().DOScale(new Vector3(200,200,200), 20).Play();
+            endGameScreen.transform.DOLocalMove(Vector3.zero, transitionTime).Play() ;
+        }
     }
 
     // Call the correct method with the correct parameters to execute an action if possible
