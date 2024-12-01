@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,11 +14,12 @@ public class Player : MonoBehaviour
     public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
     private static TMP_Text _progressText;
     private static Transform _hoveringTransform;
+    private static GameObject _interactBubble;
 
     public delegate void Subject(GameState gs);
 
     public static Subject state;
-    private GameState _gs;
+    private static GameState gs;
 
     private void Start()
     {
@@ -26,20 +28,28 @@ public class Player : MonoBehaviour
         _hoveringTransform = GameObject.Find("HoveringBody").transform;
 
         var db = GameObject.Find("DialogueBackground");
-        _gs = new GameState(
+        gs = new GameState(
             this,
             db,
             db.GetComponentInChildren<TMP_Text>()
         );
+
+        InvokeRepeating(nameof(bubbleHandler), 0, 0.25f);
+    }
+
+    private void bubbleHandler()
+    {
+        gs.TryShowingBubble();
     }
 
     private void Update()
     {
+        gs.UpdateInteractables();
         hoverEffect();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
-            state?.Invoke(_gs); // all actions send game state to the characters
+            state?.Invoke(gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
         }
     }
@@ -88,8 +98,8 @@ public class Player : MonoBehaviour
     // add npc name or null to the dialog list
     private void SpeakTo(string nameOfNpc)
     {
-        _gs.Dialog.Add(nameOfNpc);
-        if (nameOfNpc == null) _gs.Text.text = string.Empty; // clear text if no npc
+        gs.Dialog.Add(nameOfNpc);
+        if (nameOfNpc == null) gs.Text.text = string.Empty; // clear text if no npc
         else Debug.Log($"Speaking to {nameOfNpc}");
     }
 
@@ -101,7 +111,7 @@ public class Player : MonoBehaviour
     private void PickUp(string packageName)
     {
         DoNotSpeak();
-        _gs.Inventory.Add(packageName);
+        gs.Inventory.Add(packageName);
         Debug.Log($"Added {packageName} to inventory");
     }
 
@@ -126,8 +136,9 @@ public class Player : MonoBehaviour
         if (!obj.name.Contains("DeepSnow")) return;
 
         Debug.Log($"Clearing snow at {obj.transform.position}");
-        //GameObject ParticleSystem = Instantiate(snowClearEffect);
-        //ParticleSystem.transform.position = obj.transform.position;
+        GameObject ParticleSystem = Instantiate(snowClearEffect);
+        ParticleSystem.transform.position = obj.transform.position;
+
         Destroy(obj);
     }
 }
