@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         }
         if (transform.position.y < 0) transform.position = _startPos;
 
-        if (deliveredPackages.Count() == 1)
+        if (deliveredPackages.Count() == 10)
         {
             whiteBackground.GetComponent<Transform>().DOScale(new Vector3(200,200,200), 20).Play();
             endGameScreen.transform.DOLocalMove(Vector3.zero, transitionTime).Play() ;
