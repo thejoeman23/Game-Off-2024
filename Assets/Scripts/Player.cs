@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private static TMP_Text _progressText;
     private static Transform _hoveringTransform;
     private static GameObject _interactBubble;
+    private static Vector3 _startPos;
 
     public delegate void Subject(GameState gs);
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         deliveredPackages = new HashSet<string>();
         _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
         _hoveringTransform = GameObject.Find("HoveringBody").transform;
+        _startPos = transform.position;
 
         var db = GameObject.Find("DialogueBackground");
         gs = new GameState(
@@ -44,7 +46,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        gs.UpdateInteractables();
         hoverEffect();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
             state?.Invoke(gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
         }
+        if (transform.position.y < 0) transform.position = _startPos;
     }
 
     private void hoverEffect()
