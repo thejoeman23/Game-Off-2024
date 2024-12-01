@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
             TakeAction();
             state?.Invoke(gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
+            if (deliveredPackages.Count() == 10) { Debug.Log("Successfully deliverd all packages!"); }
         }
         if (transform.position.y < 0) transform.position = _startPos;
 
