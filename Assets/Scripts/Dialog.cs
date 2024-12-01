@@ -32,13 +32,6 @@ public static class Dialog
         return script.Current;
     }
 
-    // call the method with the same name as the character
-    public static IEnumerator<string> Get(string characterName, GameState gs)
-    {
-        _inventory = gs.Inventory.ToArray();
-        return (IEnumerator<string>)Type.GetType("Dialog")
-            ?.GetMethod(characterName)?.Invoke(null, null);
-    }
 
     private static bool InventoryContains(string packageName)
     {
@@ -51,37 +44,47 @@ public static class Dialog
         return _inventory.Length != 0;
     }
 
+    // call the dialog script with the same name as the character
+    public static IEnumerator<string> Get(string characterName, GameState gs)
+    {
+        _inventory = gs.Inventory.ToArray();
+        return (IEnumerator<string>)Type.GetType("Dialog")
+            ?.GetMethod(characterName)?.Invoke(null, null);
+    }
+
+    // dialog scripts are below this line
+
     public static IEnumerator<string> HouseA()
     {
-        yield return "Do you have my package?";
+        yield return "Give me my package!";
 
         if (HasPackages())
         {
             if (InventoryContains("PackageA"))
             {
                 yield return "Is this your package?";
-                yield return "It is! Thank you so much! My night is saved!";
+                yield return "Its about time!";
                 Player.deliveredPackages.Add("PackageA");
                 yield return null;
             }
         }
-        else yield return "no...";
+        else yield return "I dont have it...";
 
-        yield return "You better find it! I want to use my new ice skates tonight!";
+        yield return "It will expire soon! Go!";
         yield return null;
     }
 
-    public static IEnumerator<string> HouseB()
+    public static IEnumerator<string> PuzzleHouse1()
     {
         yield return "Give me my package!";
 
         if (HasPackages())
         {
-            if (InventoryContains("PackageB"))
+            if (InventoryContains("PuzzlePackage1"))
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.deliveredPackages.Add("PackageB");
+                Player.deliveredPackages.Add("PuzzlePackage1");
                 yield return null;
             }
         }
@@ -91,17 +94,17 @@ public static class Dialog
         yield return null;
     }
 
-    public static IEnumerator<string> HouseC()
+    public static IEnumerator<string> PuzzleHouse2()
     {
         yield return "Give me my package!";
 
         if (HasPackages())
         {
-            if (InventoryContains("PackageC"))
+            if (InventoryContains("PuzzlePackage2"))
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.deliveredPackages.Add("PackageC");
+                Player.deliveredPackages.Add("PuzzlePackage2");
                 yield return null;
             }
         }
@@ -111,17 +114,17 @@ public static class Dialog
         yield return null;
     }
 
-    public static IEnumerator<string> HouseD()
+    public static IEnumerator<string> PuzzleHouse3()
     {
         yield return "Give me my package!";
 
         if (HasPackages())
         {
-            if (InventoryContains("PackageD"))
+            if (InventoryContains("PuzzlePackage3"))
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.deliveredPackages.Add("PackageD");
+                Player.deliveredPackages.Add("PuzzlePackage3");
                 yield return null;
             }
         }
@@ -131,17 +134,17 @@ public static class Dialog
         yield return null;
     }
 
-    public static IEnumerator<string> HouseE()
+    public static IEnumerator<string> PuzzleHouse4()
     {
         yield return "Give me my package!";
 
         if (HasPackages())
         {
-            if (InventoryContains("PackageE"))
+            if (InventoryContains("PuzzlePackage4"))
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.deliveredPackages.Add("PackageE");
+                Player.deliveredPackages.Add("PuzzlePackage4");
                 yield return null;
             }
         }
@@ -151,17 +154,97 @@ public static class Dialog
         yield return null;
     }
 
-    public static IEnumerator<string> HouseF()
+    public static IEnumerator<string> PuzzleHouse5()
     {
         yield return "Give me my package!";
 
         if (HasPackages())
         {
-            if (InventoryContains("PackageF"))
+            if (InventoryContains("PuzzlePackage5"))
             {
                 yield return "Is this your package?";
                 yield return "Its about time!";
-                Player.deliveredPackages.Add("PackageF");
+                Player.deliveredPackages.Add("PuzzlePackage5");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> ElevatedHouse()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("ElevatedPackage"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("ElevatedPackage");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> RichHouse()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("RichPackage"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("RichPackage");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> ShopHouse()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("ShopPackage"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("ShopPackage");
+                yield return null;
+            }
+        }
+        else yield return "I dont have it...";
+
+        yield return "It will expire soon! Go!";
+        yield return null;
+    }
+
+    public static IEnumerator<string> Tower()
+    {
+        yield return "Give me my package!";
+
+        if (HasPackages())
+        {
+            if (InventoryContains("TowerPackage"))
+            {
+                yield return "Is this your package?";
+                yield return "Its about time!";
+                Player.deliveredPackages.Add("ShopPackage");
                 yield return null;
             }
         }

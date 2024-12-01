@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
         GameObject package = NearestWithTag("Package");
         if (package && Vector3.Distance(package.transform.position, transform.position) < ActionDistance)
         {
-            // if (not inside DeepSnow)
             PickUp(package.name);
             package.SetActive(false); // hide the package when it is picked up
             return;

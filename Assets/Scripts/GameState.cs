@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -49,7 +48,7 @@ public struct GameState
 
             Tween shrink = Textbox.transform.DOScale(Vector3.zero, .1f);
             shrink.Play();
-            shrink.OnComplete(() => { textbox.SetActive(true); });
+            shrink.OnComplete(() => { textbox.SetActive(false); });
         }
     }
 
@@ -91,8 +90,8 @@ public struct GameState
         shrink.OnComplete(() => { interactBubble.SetActive(false); });
     }
 
-    public GameObject Bubble { get; set; }
-    public List<Transform> Interactables { get; set; }
+    private GameObject Bubble { get; set; }
+    private List<Transform> Interactables { get; set; }
     private GameObject Textbox { get; set; }
     public TMP_Text Text { get; set; }
     public Player Player { get; set; }
