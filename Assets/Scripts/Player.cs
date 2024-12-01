@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     public static HashSet<string> deliveredPackages; // incremented in Dialog.cs
     private static TMP_Text _progressText;
-    private static Transform _hoveringTransform;
     private static GameObject _interactBubble;
     private static Vector3 _startPos;
 
@@ -26,7 +25,6 @@ public class Player : MonoBehaviour
     {
         deliveredPackages = new HashSet<string>();
         _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
-        _hoveringTransform = GameObject.Find("HoveringBody").transform;
         _startPos = transform.position;
 
         var db = GameObject.Find("DialogueBackground");
@@ -46,7 +44,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        hoverEffect();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
@@ -54,13 +51,6 @@ public class Player : MonoBehaviour
             _progressText.text = $"{deliveredPackages.Count()}/10";
         }
         if (transform.position.y < 0) transform.position = _startPos;
-    }
-
-    private void hoverEffect()
-    {
-        var pos = _hoveringTransform.position;
-        pos.y += Mathf.Sin(Time.timeSinceLevelLoad) * 0.0025f;
-        _hoveringTransform.position = pos;
     }
 
     // Call the correct method with the correct parameters to execute an action if possible
