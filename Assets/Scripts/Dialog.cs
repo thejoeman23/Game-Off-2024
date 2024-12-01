@@ -122,21 +122,24 @@ public static class Dialog
 
     public static IEnumerator<string> PuzzleHouse3()
     {
-        yield return "Give me my package!";
+        yield return "I would like my package please, <!wait=.3><wave><palette>good sir";
 
         if (HasPackages())
         {
             if (InventoryContains("PuzzlePackage3"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "Why thank you, <!wait=.3><wave><palette>slimy lad!";
+                yield return "<wave>Slug along now.";
                 Player.deliveredPackages.Add("PuzzlePackage3");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
-
-        yield return "It will expire soon! Go!";
+        else yield return "You want to know the <wave>lore</wave> of the town?<!wait=.5> Why <wave>of course</wave> you do!";
+        yield return "You must find it <shake>strange</shake> that all of the houses here are <palette>puzzle shaped!";
+        yield return "Long story short, <!wait=.3>the <wave>Great Blueprint Mix-Up of '89.";
+        yield return "The <wave><b>town contractor</b></wave> accidentally <b>swapped</b> our housing plans with a <wave>jigsaw puzzle factory.";
+        yield return "Instead of fixing it, everyone just <palette>rolled</palette> with it. <!wait=.3> <wave>'Adds charm!'</wave> <!wait=.1> they said.";
+        yield return "Now we’re <palette>Puzzleton</palette>, <!wait=.3>the town where everything fits<!delay=.25>… <!delay=.035><!wait=.3><wave>eventually.";
         yield return null;
     }
 
