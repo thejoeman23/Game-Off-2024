@@ -56,61 +56,67 @@ public static class Dialog
 
     public static IEnumerator<string> HouseA()
     {
-        yield return "Give me my package!";
+        yield return "Hey, do you have my package?";
 
         if (HasPackages())
         {
             if (InventoryContains("PackageA"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "<wave>Hooray! My package!";
+                yield return "<funky>Thank you weird snail!";
                 Player.deliveredPackages.Add("PackageA");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "<!delay=.5>...No?<!delay=.035><!wait=.5>Arent you supposed to be finding our packages?";
 
-        yield return "It will expire soon! Go!";
+        yield return "Well, you better find it! <!wait=1> I'm counting on <shake>you";
         yield return null;
     }
 
     public static IEnumerator<string> PuzzleHouse1()
     {
-        yield return "Give me my package!";
+        yield return "Where is my package, <!wait=.5><shake>snaily boy!?";
 
         if (HasPackages())
         {
             if (InventoryContains("PuzzlePackage1"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "What do you mean, <!wait=.25><wave>'is this your package?!'</wave><!wait=.25> Of course it is!";
+                yield return "<shake>Gimme that!";
                 Player.deliveredPackages.Add("PuzzlePackage1");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "<shake>You dont have it?!";
 
-        yield return "It will expire soon! Go!";
+        yield return "It will expire soon! <!wait=1>What are you waiting for? <!wait=.25><wave>GOOOOOO!";
         yield return null;
     }
 
     public static IEnumerator<string> PuzzleHouse2()
     {
-        yield return "Give me my package!";
+        yield return "You're supposed to bring me my package! <!wait=.25>Where is it?";
 
         if (HasPackages())
         {
             if (InventoryContains("PuzzlePackage2"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "Oh! <!wait=.25> Thanks so much!";
+                yield return "Good luck on your journey!";
                 Player.deliveredPackages.Add("PuzzlePackage2");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "You dont know? <!wait=.25>Well its your job to find them!";
 
-        yield return "It will expire soon! Go!";
+        yield return "The packages got lost in the <shake>blizzard</shake>, <!wait=.25>so theyre scattered <palette>across the island.";
+        yield return "Each package has the same <palette>color</palette> as the house its from. <wave>Mine is purple.";
+        yield return "Go find it for me, <!wait=.25>will you?";
+        yield return "Oh, <!wait=.25> one last thing.";
+        yield return "If any snow gets in your way you can <wave>clear it</wave> with your plow.";
+        yield return "You can do so by pressing <palette>SPACE</palette> while facing a pesky block of snow.";
+        yield return "Thats all <palette>:)";
         yield return null;
     }
 
@@ -136,67 +142,67 @@ public static class Dialog
 
     public static IEnumerator<string> PuzzleHouse4()
     {
-        yield return "Give me my package!";
+        yield return "<palette>Yo yo snail bro! <!wait=.25>Where is my package <grow>dudeeee?";
 
         if (HasPackages())
         {
             if (InventoryContains("PuzzlePackage4"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "About time <!delay=.25>...<!wait=.5><!delay=.1><wave>DUDE!";
                 Player.deliveredPackages.Add("PuzzlePackage4");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "You dont have it? <!wait=.25><wave>Aw shucks man :(";
 
-        yield return "It will expire soon! Go!";
+        yield return "Go get me that package <grow>dude!</grow> <!wait=.25><shake>ASAP!";
         yield return null;
     }
 
     public static IEnumerator<string> PuzzleHouse5()
     {
-        yield return "Give me my package!";
+        yield return "<grow>Package please!";
 
         if (HasPackages())
         {
             if (InventoryContains("PuzzlePackage5"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "What! <!delay=.25>...<!wait=.5><!delay=.1> It was under <!wait=.25>a tree?";
+                yield return "How odd<!delay=.25>...";
                 Player.deliveredPackages.Add("PuzzlePackage5");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "Yeah thats right! <!wait=.5> I <shake>AM</shake> the only house without a texture!";
 
-        yield return "It will expire soon! Go!";
+        yield return "Yeah thats right! <!wait=.5> I <shake>AM</shake> the only house without a texture!";
+        yield return "<wave>What of it?";
         yield return null;
     }
 
     public static IEnumerator<string> ElevatedHouse()
     {
-        yield return "Give me my package!";
+        yield return "Mon package, <wave>miseur?";
 
         if (HasPackages())
         {
             if (InventoryContains("ElevatedPackage"))
             {
-                yield return "Is this your package?";
-                yield return "Its about time!";
+                yield return "Ah oui oui, <palette>my baguette in a box!";
+                yield return "<wave>Finally!";
                 Player.deliveredPackages.Add("ElevatedPackage");
                 yield return null;
             }
         }
-        else yield return "I dont have it...";
+        else yield return "<wave>Oui</wave>, <!wait=.3> I did build ma maison above the ground!";
 
-        yield return "It will expire soon! Go!";
+        yield return "Those darn<!delay=.1> squirrels.<!delay=.035> Always eating my <wave>familia!";
         yield return null;
     }
 
     public static IEnumerator<string> RichHouse()
     {
-        yield return "Give me my package!";
+        yield return "I PAYED EXTRA TO GET MY PACKAGE ON TIME! WHhERE IS IT!";
 
         if (HasPackages())
         {
