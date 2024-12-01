@@ -79,15 +79,14 @@ public struct GameState
             }
         }
 
-        Bubble.SetActive(false);
         shrinkBubble();
     }
 
     void shrinkBubble()
     {
-        GameObject interactBubble = Textbox;
+        GameObject interactBubble = Bubble;
 
-        Tween shrink = Textbox.transform.DOScale(Vector3.zero, .1f);
+        Tween shrink = interactBubble.transform.DOScale(Vector3.zero, .1f);
         shrink.Play();
         shrink.OnComplete(() => { interactBubble.SetActive(false); });
     }
