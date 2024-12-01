@@ -238,7 +238,7 @@ public static class Dialog
         }
         else yield return "Please find it, <!wait=.25>they demand perfection.";
 
-        yield return "<wave>THEYRE HOLDING ME HOSTA</wave><wait=.75>---";
+        yield return "<wave>THEYRE HOLDING ME HOSTA</wave><!wait=.75>---";
         yield return null;
     }
 

@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "D:\\Gamedev\\GitHub\\Game-Off-2024\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|d:\\gamedev\\github\\game-off-2024\\assets\\resources\\3d rule tiles\\tilemapscripts\\ruletile3d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|d:\\gamedev\\github\\game-off-2024\\assets\\scripts\\dialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|D:\\Gamedev\\GitHub\\Game-Off-2024\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|D:\\Gamedev\\GitHub\\Game-Off-2024\\assets\\resources\\3d rule tiles\\tilemapscripts\\ruletile3d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACCF5A09-C7B0-150A-F99E-F2ABE86C8681}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\3d rule tiles\\tilemapscripts\\ruletile3d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,6 +27,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Dialog.cs",
+              "DocumentMoniker": "D:\\Gamedev\\GitHub\\Game-Off-2024\\Assets\\Scripts\\Dialog.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Dialog.cs",
+              "ToolTip": "D:\\Gamedev\\GitHub\\Game-Off-2024\\Assets\\Scripts\\Dialog.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Dialog.cs",
+              "ViewState": "AQIAANoAAAAAAAAAAAAswPkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T15:05:21.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\Gamedev\\GitHub\\Game-Off-2024\\Assets\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
+              "ToolTip": "D:\\Gamedev\\GitHub\\Game-Off-2024\\Assets\\Scripts\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAASwFsAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T13:24:30.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "RuleTile3D.cs",
               "DocumentMoniker": "D:\\Gamedev\\GitHub\\Game-Off-2024\\Assets\\Resources\\3D Rule Tiles\\TileMapScripts\\RuleTile3D.cs",
               "RelativeDocumentMoniker": "Assets\\Resources\\3D Rule Tiles\\TileMapScripts\\RuleTile3D.cs",
@@ -26,8 +59,7 @@
               "RelativeToolTip": "Assets\\Resources\\3D Rule Tiles\\TileMapScripts\\RuleTile3D.cs",
               "ViewState": "AQIAAJQAAAAAAAAAAAAYwKkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T13:44:55.088Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T13:44:55.088Z"
             }
           ]
         }
