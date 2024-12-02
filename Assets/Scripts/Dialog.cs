@@ -255,10 +255,10 @@ public static class Dialog
             {
                 yield return "<wave>Still nobodyyy";
                 yield return "<!wait=.75> ok ill take it.";
-                Player.deliveredPackages.Add("ShopPackage");
+                Player.deliveredPackages.Add("TowerPackage");
                 yield return null;
             }
         }
-        else yield return null;
+        yield return null;
     }
 }
