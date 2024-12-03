@@ -53,5 +53,9 @@ public class CoolScript : MonoBehaviour
         text2.DOColor(Color.clear, fadeInTime).SetLoops(1).Play();
         yield return new WaitForSeconds(2f);
         fadeScreen.DOFade(0, 1).SetLoops(1).Play();
+
+        text1.gameObject.SetActive(false);
+        text2.gameObject.SetActive(false);
+        logo.gameObject.SetActive(false);
     }
 }
