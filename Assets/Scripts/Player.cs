@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
         deliveredPackages = new HashSet<string>();
         _progressText = GameObject.Find("ProgressText").GetComponent<TMP_Text>();
         _startPos = transform.position;
@@ -47,18 +49,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y < 0) { transform.position = _startPos; }
+
+        if (deliveredPackages.Count() == 10)
+        {
+            Debug.Log("Successfully delivered all packages!");
+            whiteBackground.GetComponent<Transform>().DOScale(new Vector3(200, 200, 200), 20).Play();
+            endGameScreen.transform.DOLocalMove(Vector3.zero, transitionTime).Play();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
             state?.Invoke(gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
-            if (transform.position.y < 0) transform.position = _startPos;
-            if (deliveredPackages.Count() == 10)
-            {
-                Debug.Log("Successfully delivered all packages!");
-                whiteBackground.GetComponent<Transform>().DOScale(new Vector3(200, 200, 200), 20).Play();
-                endGameScreen.transform.DOLocalMove(Vector3.zero, transitionTime).Play();
-            }
         }
     }
 
