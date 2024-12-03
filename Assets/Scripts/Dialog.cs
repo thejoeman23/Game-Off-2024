@@ -13,10 +13,10 @@ public static class Dialog
     {
         if (script == null) throw new ArgumentNullException(nameof(script));
 
-        var next = Advance(script);
+        var next = "<+spread>" + Advance(script);
 
         // show next line of dialog or end conversation
-        if (next == null)
+        if (next == null || next == "<+spread>")
         {
             text.text = string.Empty;
             return true;
@@ -71,8 +71,7 @@ public static class Dialog
             }
         }
         else yield return "Hey, do you have my package?";
-
-        yield return "<!delay=.5>...No?<!delay=.035><!wait=.5>Arent you supposed to be finding our packages?";
+        yield return "<!delay=.5>...<!delay=.035>No?<!wait=.5>Arent you supposed to be finding our packages?";
         yield return "Well, you better find it! <!wait=1> I'm counting on <shake>you";
         yield return null;
     }
@@ -131,7 +130,7 @@ public static class Dialog
 
     public static IEnumerator<string> PuzzleHouse3()
     {
-        string packageName = "PuzzlePackage2";
+        string packageName = "PuzzlePackage3";
         if (Player.deliveredPackages.Contains(packageName)) { yield return "<wave>Slug along now."; yield return null; }
 
         if (HasPackages())
@@ -269,12 +268,14 @@ public static class Dialog
         {
             if (InventoryContains(packageName))
             {
+                yield return "Sorry nobody's <grow>hoooooooome!";
                 yield return "<wave>Still nobodyyy";
                 yield return "<!wait=.75> ok ill take it.";
                 Player.deliveredPackages.Add("TowerPackage");
                 yield return null;
             }
-        } else yield return "Sorry nobody's home.";
+        } 
+        else yield return "Sorry nobody's <grow>hoooooooome!";
         yield return null;
     }
 }
