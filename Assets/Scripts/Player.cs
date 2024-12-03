@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -41,6 +40,20 @@ public class Player : MonoBehaviour
         InvokeRepeating(nameof(bubbleHandler), 0, 0.25f);
     }
 
+    private void addAllPackages()
+    {
+        gs.Inventory.Add("TowerPackage");
+        gs.Inventory.Add("RichPackage");
+        gs.Inventory.Add("ElevatedPackage");
+        gs.Inventory.Add("ShopPackage");
+        gs.Inventory.Add("PackageA");
+        gs.Inventory.Add("PuzzlePackage1");
+        gs.Inventory.Add("PuzzlePackage2");
+        gs.Inventory.Add("PuzzlePackage3");
+        gs.Inventory.Add("PuzzlePackage4");
+        gs.Inventory.Add("PuzzlePackage5");
+    }
+
     private void bubbleHandler()
     {
         gs.TryShowingBubble();
@@ -48,12 +61,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y < 0)
+        {
+            Debug.Log(transform.position);
+            transform.position = _startPos;
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeAction();
             state?.Invoke(gs); // all actions send game state to the characters
             _progressText.text = $"{deliveredPackages.Count()}/10";
-            if (transform.position.y < 0) transform.position = _startPos;
+
             if (deliveredPackages.Count() == 10)
             {
                 Debug.Log("Successfully delivered all packages!");
